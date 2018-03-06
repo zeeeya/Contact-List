@@ -35,3 +35,7 @@ ul li a {
 h1 {
     margin-top:50px;
 }
+td {
+    width: 5in;
+    text-align: left;
+}

@@ -1,18 +1,67 @@
 
-<input type="text" [(ngModel)]="title" name="title" placeholder="Title..">
-<textarea [(ngModel)]="content" name="content" placeholder="Content.."></textarea>
-<input type="submit" value="Add a Post" (click)="addPost()">
+<input type="text" [(ngModel)]="Firstname" name="firstname" placeholder="Firstname..">
+<input type="text" [(ngModel)]="Lastname" name="lastname" placeholder="Lastname..">
+<input type="text" [(ngModel)]="Phone" name="phone" placeholder="Phone..">
+<input type="text" [(ngModel)]="Mobile" name="mobile" placeholder="Mobile..">
+<input type="text" [(ngModel)]="Email" name="email" placeholder="Email..">
+<input type="text" [(ngModel)]="Address" name="address" placeholder="Address..">
+<input type="submit" value="Add a posts" (click)="addPost()">
 
-
+<h1>List of Users</h1>
+<table>
+    <tr>
+        <td>
+        Name
+        </td>
+        <td>
+        Phone
+        </td>
+        <td>
+        Mobile
+        </td>
+        <td>
+        Email
+        </td>
+        <td>
+        Address
+        </td>
+        <td>
+        Action
+        </td>
+        </tr>
+</table>
 <ul *ngFor="let post of posts | async">
   <li (click)="getPost(post.id)">
-    <strong>{{ post.data.title }} (<a href="#" (click)="deletePost(post.id)">delete</a>)</strong>
-    <br>
-    {{ post.data.content }}
+    <table>
+    <tr>
+    <td>
+      {{ post.data.firstname }} {{ post.data.lastname }}
+    </td>
+    <td>
+    {{ post.data.phone }}
+    </td>
+    <td>
+    {{ post.data.mobile }}
+    </td>
+    <td>
+    {{ post.data.email }}
+    </td>
+    <td>
+    {{ post.data.address }}
+    </td>
+    <td>
+        <a href="#" (click)="deletePost(post.id)">delete</a>
+    </td>
+    </tr>
+    </table>
+    
   </li>
 </ul>
 
-<h1>A specific post:</h1>
+<h3>{{ (post | async)?.Firstname }} {{ (post | async)?.Lastname }}</h3>
+<p>{{ (post | async)?.Phone }} <br>
+  {{ (post | async)?.Mobile }} <br>
+  {{ (post | async)?.Email }} <br>
+  {{ (post | async)?.Address }} <br>
 
-<h3>{{ (post | async)?.title }}</h3>
-<p>{{ (post | async)?.content }}</p>
+</p>
