@@ -5,11 +5,18 @@
 <input type="text" [(ngModel)]="Mobile" name="mobile" placeholder="Mobile..">
 <input type="text" [(ngModel)]="Email" name="email" placeholder="Email..">
 <input type="text" [(ngModel)]="Address" name="address" placeholder="Address..">
+<p>
+<input type="file" [(ngModel)]="Image" name="image" placeholder="Image..">
+<img src="/Uploads" style="max-width:200px; max-height:200px;">
+</p>
 <input type="submit" value="Add a posts" (click)="addPost()">
 
 <h1>List of Users</h1>
 <table>
     <tr>
+        <td>
+        Image
+        </td>
         <td>
         Name
         </td>
@@ -35,6 +42,9 @@
     <table>
     <tr>
     <td>
+    {{ post.data.image }}
+    </td>
+    <td>
       {{ post.data.firstname }} {{ post.data.lastname }}
     </td>
     <td>
@@ -50,14 +60,16 @@
     {{ post.data.address }}
     </td>
     <td>
-        <a href="#" (click)="deletePost(post.id)">❌</a>&nbsp;&nbsp;<a href="#" (click)="updatePost(post.id)">✔️</a>
+        <a href="#" (click)="deletePost(post.id)">❌&nbsp;Delete</a>
+        <br>
+        <a href="#" (click)="updatePost(post.id)">✔&nbsp;Update</a>
     </td>
     </tr>
     </table>
     
   </li>
 </ul>
-
+<p>{{ (post | async)?.Image }}</p> <br>
 <h3>{{ (post | async)?.Firstname }} {{ (post | async)?.Lastname }}</h3>
 <p>{{ (post | async)?.Phone }} <br>
   {{ (post | async)?.Mobile }} <br>

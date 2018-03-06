@@ -11,6 +11,7 @@ interface Post {
   Mobile: string;
   Email: string;
   Address: string;
+  Image: File;
 }
 interface PostId extends Post {
   id: string;
@@ -25,6 +26,7 @@ export class AppComponent {
 
   postsCol: AngularFirestoreCollection<Post>;
   posts: any;
+  
 
   Firstname: string;
   Lastname: string;
@@ -32,6 +34,7 @@ export class AppComponent {
   Mobile: string;
   Email: string;
   Address: string;
+  Image: File;
 
   postDoc: AngularFirestoreDocument<Post>;
   post: Observable<Post>;
@@ -54,7 +57,7 @@ export class AppComponent {
   }
 
   addPost() {
-    this.afs.collection('posts').add({'firstname': this.Firstname, 'lastname': this.Lastname, 'phone': this.Phone, 'mobile': this.Mobile, 'email': this.Email, 'address': this.Address});
+    this.afs.collection('posts').add({'firstname': this.Firstname, 'lastname': this.Lastname, 'phone': this.Phone, 'mobile': this.Mobile, 'email': this.Email, 'address': this.Address, 'image': this.Image});
   }
 
   getPost(postId) {
@@ -64,5 +67,16 @@ export class AppComponent {
 
   deletePost(postId) {
     this.afs.doc('posts/'+postId).delete();
+  }
+
+  updatePost(postId) {
+    this.afs.doc('posts/'+postId).update({
+      firstname: this.Firstname,
+      lastname: this.Lastname,
+      mobile: this.Mobile,
+      phone: this.Phone,
+      email: this.Email,
+      address: this.Address
+    })
   }
 }
